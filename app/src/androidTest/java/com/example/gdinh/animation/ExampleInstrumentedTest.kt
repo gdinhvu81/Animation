@@ -1,4 +1,4 @@
-package com.example.gdinh.animations
+package com.example.gdinh.animation
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.gdinh.animations", appContext.packageName)
+        assertEquals("com.example.gdinh.animation", appContext.packageName)
     }
 }

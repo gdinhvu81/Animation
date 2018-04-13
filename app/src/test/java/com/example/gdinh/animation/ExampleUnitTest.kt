@@ -1,4 +1,4 @@
-package com.example.gdinh.animations
+package com.example.gdinh.animation
 
 import org.junit.Test
 
