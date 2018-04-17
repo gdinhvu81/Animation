@@ -1,23 +1,25 @@
 package com.example.gdinh.animation
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-
+import com.example.gdinh.animation.R.id.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var cb: ChalkBoard? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        cb = ChalkBoard(this)      //Attach ChalkBoard to the Activity
+        backgroundLayout.addView(cb)
+        fab.setOnClickListener {
+            cb!!.wander()                    //when button clicked, do animation in ChalkBoard
         }
     }
 
@@ -28,12 +30,62 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+// Set which animation to perform on next Button click
+        val id = item.itemId
+
+        when (id) {
+            raw_animation -> {
+                cb!!.setStyle(ChalkBoard.RAW)
+                return true
+            }
+            obj_animation -> {
+                cb!!.setStyle(ChalkBoard.ANIMATOR)
+                return true
+            }
+            accelorate_animation -> {
+                cb!!.setStyle(ChalkBoard.ACCELERATOR)
+                return true
+            }
+            decelorate_animation -> {
+                cb!!.setStyle(ChalkBoard.DECELERATE)
+                return true
+            }
+            bounce_animation -> {
+                cb!!.setStyle(ChalkBoard.BOUNCE)
+                return true
+            }
+            rotate_animation -> {
+                cb!!.setStyle(ChalkBoard.ROTATE)
+                return true
+            }
+            moverotate_animation -> {
+                cb!!.setStyle(ChalkBoard.MOVE_ROTATE)
+                return true
+            }
+            color_animation -> {
+                cb!!.setStyle(ChalkBoard.COLOR_ACC)
+                return true
+            }
+            movecolor_animation -> {
+                cb!!.setStyle(ChalkBoard.MOVE_RECOLOR)
+                return true
+            }
+            moverotatecolor_animation -> {
+                cb!!.setStyle(ChalkBoard.MOVE_ROTATE_RECOLOR)
+                return true
+            }
+            bounce_rotate_anim -> {
+                cb!!.setStyle(ChalkBoard.BOUNCE_ROTATE)
+                return true
+            }
+            move_bounce_anim -> {
+                cb!!.setStyle(ChalkBoard.MOVE_BOUNCE)
+                return true
+            }
+            else -> {
+            }
         }
+
+        return super.onOptionsItemSelected(item)
     }
 }
